@@ -28,7 +28,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Security group allows port 80 from anywhere and port 22 from admin IP only — `curl http://<EC2-hostname>` gets a connection (even if no app is running) and port 8008 is not reachable externally
   4. EBS gp3 root volume of 30 GB or more is attached and mounted
 **Plans**: 2 plans
-- [ ] 01-01-PLAN.md — Provision EC2 instance (key pair, security group, launch with Docker user-data)
+- [x] 01-01-PLAN.md — Provision EC2 instance (key pair, security group, launch with Docker user-data) — DONE 2026-02-20
 - [ ] 01-02-PLAN.md — Verify SSH, Docker Compose, disk, and security group rules
 
 ### Phase 2: Stack Configuration
@@ -61,6 +61,6 @@ Phases execute in numeric order: 1 → 2 → 3
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. AWS Infrastructure | 0/2 | Planned | - |
+| 1. AWS Infrastructure | 1/2 | In Progress | - |
 | 2. Stack Configuration | 0/? | Not started | - |
 | 3. Deploy and Validate | 0/? | Not started | - |

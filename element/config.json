@@ -1,0 +1,71 @@
+{
+    "default_server_config": {
+        "m.homeserver": {
+            "base_url": "https://matrix.example.com",
+            "server_name": "example.com"
+        },
+        "m.identity_server": {
+            "base_url": ""
+        }
+    },
+    "brand": "YourBrand Chat",
+    "integrations_ui_url": "",
+    "integrations_rest_url": "",
+    "integrations_widgets_urls": [],
+    "disable_custom_urls": true,
+    "disable_guests": true,
+    "disable_login_language_selector": false,
+    "disable_3pid_login": false,
+    "default_country_code": "US",
+    "show_labs_settings": false,
+    "default_federate": false,
+    "default_theme": "custom",
+    "room_directory": {
+        "servers": []
+    },
+    "setting_defaults": {
+        "breadcrumbs": true,
+        "custom_themes": [
+            {
+                "name": "YourBrand",
+                "is_dark": true,
+                "colors": {
+                    "accent-color": "#6366f1",
+                    "primary-color": "#6366f1",
+                    "warning-color": "#f59e0b",
+                    "sidebar-color": "#0f172a",
+                    "roomlist-background-color": "#1e293b",
+                    "roomlist-text-color": "#e2e8f0",
+                    "roomlist-text-secondary-color": "#94a3b8",
+                    "roomlist-highlights-color": "#334155",
+                    "roomlist-separator-color": "#334155",
+                    "timeline-background-color": "#1e293b",
+                    "timeline-text-color": "#f1f5f9",
+                    "timeline-text-secondary-color": "#94a3b8",
+                    "timeline-highlights-color": "#334155",
+                    "reaction-row-button-selected-bg-color": "#4f46e5"
+                }
+            }
+        ]
+    },
+    "permalink_prefix": "https://chat.example.com",
+    "terms_and_conditions_links": [
+        {
+            "url": "https://example.com/terms",
+            "text": "Terms of Service"
+        },
+        {
+            "url": "https://example.com/privacy",
+            "text": "Privacy Policy"
+        }
+    ],
+    "embedded_pages": {
+        "welcome_url": "https://example.com/welcome",
+        "home_url": "https://example.com/home"
+    },
+    "features": {
+        "feature_video_rooms": true,
+        "feature_group_calls": true
+    },
+    "map_style_url": ""
+}

@@ -3,6 +3,9 @@ compose/.env
 *.pem
 *.key
 
+# AWS provisioning artifacts (contain instance IDs, admin IP, key paths)
+scripts/aws/instance-info.env
+
 # Backups (local copies)
 backups/
 

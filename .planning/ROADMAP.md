@@ -13,7 +13,7 @@ Three sequential phases deliver a working Matrix/Element deployment on AWS EC2. 
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: AWS Infrastructure** - Provision EC2 instance with Docker, security group, SSH access confirmed — DONE 2026-02-20
-- [ ] **Phase 2: Stack Configuration** - Adapt existing TLS-built configs for HTTP-only EC2 operation
+- [x] **Phase 2: Stack Configuration** - Adapt existing TLS-built configs for HTTP-only EC2 operation — DONE 2026-02-20
 - [ ] **Phase 3: Deploy and Validate** - Deploy stack incrementally and verify E2EE messaging works end-to-end
 
 ## Phase Details
@@ -42,7 +42,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   4. All config changes are committed to the repo and ready to transfer to EC2 via SCP
 **Plans**: 2 plans
 - [x] 02-01-PLAN.md — Replace Nginx and Docker Compose with HTTP-only config, remove certbot — DONE 2026-02-20
-- [ ] 02-02-PLAN.md — Update Synapse, Element, and well-known configs for EC2 HTTP hostname
+- [x] 02-02-PLAN.md — Update Synapse, Element, and well-known configs for EC2 HTTP hostname — DONE 2026-02-20
 
 ### Phase 3: Deploy and Validate
 **Goal**: The full Matrix/Element stack is running on EC2 and a human can register, log in, and exchange E2EE messages
@@ -64,5 +64,5 @@ Phases execute in numeric order: 1 → 2 → 3
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. AWS Infrastructure | 2/2 | Complete | 2026-02-20 |
-| 2. Stack Configuration | 1/2 | In progress | - |
+| 2. Stack Configuration | 2/2 | Complete | 2026-02-20 |
 | 3. Deploy and Validate | 0/? | Not started | - |

@@ -14,8 +14,14 @@ if [[ ! -f "$ENV_FILE" ]]; then
     exit 1
 fi
 
-# shellcheck source=/dev/null
-source "$ENV_FILE"
+# Extract specific variables using grep/cut to avoid sourcing issues with
+# multi-word values like POSTGRES_INITDB_ARGS=--encoding=UTF-8 --lc-collate=C
+_get_env() { grep "^${1}=" "$ENV_FILE" | head -1 | cut -d= -f2-; }
+ADMIN_USER="$(_get_env ADMIN_USER)"
+ADMIN_PASSWORD="$(_get_env ADMIN_PASSWORD)"
+SYNAPSE_REGISTRATION_SHARED_SECRET="$(_get_env SYNAPSE_REGISTRATION_SHARED_SECRET)"
+SYNAPSE_SERVER_NAME="$(_get_env SYNAPSE_SERVER_NAME)"
+ELEMENT_DOMAIN="$(_get_env ELEMENT_DOMAIN)"
 
 # Validate required vars
 for var in ADMIN_USER ADMIN_PASSWORD SYNAPSE_REGISTRATION_SHARED_SECRET; do

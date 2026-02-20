@@ -17,7 +17,7 @@ import sys
 from pathlib import Path
 
 try:
-    from nio import AsyncClient, RoomCreateResponse
+    from nio import AsyncClient, RoomCreateResponse, RoomVisibility
 except ImportError:
     print("ERROR: matrix-nio not installed. Run: pip3 install matrix-nio")
     sys.exit(1)
@@ -82,7 +82,7 @@ async def main():
         name=SPACE_NAME,
         topic=SPACE_TOPIC,
         space=True,
-        visibility="private",
+        visibility=RoomVisibility.private,
         initial_state=[
             {
                 "type": "m.room.history_visibility",
@@ -128,7 +128,7 @@ async def main():
         room_resp = await client.room_create(
             name=name,
             topic=topic,
-            visibility="private",
+            visibility=RoomVisibility.private,
             initial_state=initial_state,
             power_level_override=power_overrides,
         )

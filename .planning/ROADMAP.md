@@ -12,7 +12,7 @@ Three sequential phases deliver a working Matrix/Element deployment on AWS EC2. 
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: AWS Infrastructure** - Provision EC2 instance with Docker, security group, SSH access confirmed
+- [x] **Phase 1: AWS Infrastructure** - Provision EC2 instance with Docker, security group, SSH access confirmed — DONE 2026-02-20
 - [ ] **Phase 2: Stack Configuration** - Adapt existing TLS-built configs for HTTP-only EC2 operation
 - [ ] **Phase 3: Deploy and Validate** - Deploy stack incrementally and verify E2EE messaging works end-to-end
 
@@ -29,7 +29,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   4. EBS gp3 root volume of 30 GB or more is attached and mounted
 **Plans**: 2 plans
 - [x] 01-01-PLAN.md — Provision EC2 instance (key pair, security group, launch with Docker user-data) — DONE 2026-02-20
-- [ ] 01-02-PLAN.md — Verify SSH, Docker Compose, disk, and security group rules
+- [x] 01-02-PLAN.md — Verify SSH, Docker Compose, disk, and security group rules — DONE 2026-02-20
 
 ### Phase 2: Stack Configuration
 **Goal**: The existing Docker Compose stack configs are adapted so the stack can be deployed and run correctly over HTTP on the EC2 public hostname
@@ -61,6 +61,6 @@ Phases execute in numeric order: 1 → 2 → 3
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. AWS Infrastructure | 1/2 | In Progress | - |
+| 1. AWS Infrastructure | 2/2 | Complete | 2026-02-20 |
 | 2. Stack Configuration | 0/? | Not started | - |
 | 3. Deploy and Validate | 0/? | Not started | - |

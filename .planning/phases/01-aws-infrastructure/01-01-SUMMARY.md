@@ -73,7 +73,7 @@ Each task was committed atomically:
 1. **Task 1: Create user-data.sh cloud-init script for Docker on AL2023** - `0374ed5` (feat)
 2. **Task 2: Create provision.sh and execute it to launch EC2 instance** - `8bec9c7` (feat)
 
-**Plan metadata:** `[pending final commit]` (docs: complete plan)
+**Plan metadata:** `f4e7da2` (docs: complete plan)
 
 ## Files Created/Modified
 - `scripts/aws/user-data.sh` - Cloud-init script: dnf install docker, daemon.json config, systemctl enable, usermod, Compose v2 plugin

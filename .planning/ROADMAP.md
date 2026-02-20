@@ -14,7 +14,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: AWS Infrastructure** - Provision EC2 instance with Docker, security group, SSH access confirmed — DONE 2026-02-20
 - [x] **Phase 2: Stack Configuration** - Adapt existing TLS-built configs for HTTP-only EC2 operation — DONE 2026-02-20
-- [ ] **Phase 3: Deploy and Validate** - Deploy stack incrementally and verify E2EE messaging works end-to-end
+- [x] **Phase 3: Deploy and Validate** - Deploy stack incrementally and verify E2EE messaging works end-to-end — DONE 2026-02-20
 
 ## Phase Details
 
@@ -57,7 +57,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: 3 plans
 - [x] 03-01-PLAN.md — Transfer repo to EC2, substitute placeholders, fill .env, generate signing key, start stack — DONE 2026-02-20
 - [x] 03-02-PLAN.md — Bootstrap admin user, create default rooms, generate registration token, verify branding — DONE 2026-02-20
-- [ ] 03-03-PLAN.md — Human end-to-end verification (login, rooms, E2EE messaging, branding)
+- [x] 03-03-PLAN.md — Human end-to-end verification (login, rooms, E2EE messaging, branding) — DONE 2026-02-20
 
 ## Progress
 
@@ -68,4 +68,4 @@ Phases execute in numeric order: 1 → 2 → 3
 |-------|----------------|--------|-----------|
 | 1. AWS Infrastructure | 2/2 | Complete | 2026-02-20 |
 | 2. Stack Configuration | 2/2 | Complete    | 2026-02-20 |
-| 3. Deploy and Validate | 2/3 | In progress | - |
+| 3. Deploy and Validate | 3/3 | Complete    | 2026-02-20 |

@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-02-20)
 ## Current Position
 
 Phase: 3 of 3 (Deploy and Validate) — IN PROGRESS
-Plan: 1 of 3 completed in current phase
-Status: Phase 3 Plan 01 complete — Docker Compose stack running on EC2; all 4 services healthy; STACK-06 satisfied
-Last activity: 2026-02-20 — Plan 03-01 complete (EC2 deploy, signing key generated, stack started with postgres+synapse healthy, element+nginx running)
+Plan: 2 of 3 completed in current phase
+Status: Phase 3 Plan 02 complete — Admin user created, Space+6 rooms created, registration token generated, Element branding confirmed; VERIFY-01, VERIFY-02, VERIFY-04 satisfied
+Last activity: 2026-02-20 — Plan 03-02 complete (admin bootstrap, room creation via matrix-nio, registration token JWkAZC1bx4BUozEh, nginx /_synapse/admin proxy fix)
 
-Progress: [████████░░] 83% (5 of 6 plans across all phases)
+Progress: [█████████░] 86% (6 of 7 plans across all phases)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 5
+- Total plans completed: 6
 - Average duration: ~4 min
-- Total execution time: ~0.3 hours
+- Total execution time: ~0.4 hours
 
 **By Phase:**
 
@@ -29,10 +29,10 @@ Progress: [████████░░] 83% (5 of 6 plans across all phases)
 |-------|-------|-------|----------|
 | 01-aws-infrastructure | 2 | ~9 min | ~5 min |
 | 02-stack-configuration | 2 | ~4 min | ~2 min |
-| 03-deploy-and-validate | 1 (of 3) | ~6 min | ~6 min |
+| 03-deploy-and-validate | 2 (of 3) | ~13 min | ~6.5 min |
 
 **Recent Trend:**
-- Last 5 plans: ~5 min, ~2 min, ~2 min, 6 min
+- Last 5 plans: ~5 min, ~2 min, ~2 min, 6 min, 7 min
 - Trend: operational plans (EC2 work) take slightly longer than config-only plans
 
 *Updated after each plan completion*
@@ -61,6 +61,11 @@ Recent decisions affecting current work:
 - [Phase 03-deploy-and-validate Plan 01]: homeserver.yaml secret substitution done via sed on EC2 (not docker-compose env vars) — homeserver.yaml is a read-only bind mount; Synapse cannot receive secrets via environment variables when SYNAPSE_CONFIG_PATH points to existing file
 - [Phase 03-deploy-and-validate Plan 01]: EC2 hostname = ec2-23-20-14-90.compute-1.amazonaws.com; server_name baked into postgres DB — cannot change without dropping DB
 - [Phase 03-deploy-and-validate Plan 01]: ADMIN_USER=admin, ADMIN_PASSWORD=5489a89c667a4f298c922fde44fd3727 — needed for Plan 03-02 and Plan 03-03
+- [Phase 03-deploy-and-validate Plan 02]: Synapse API access on EC2 must go through nginx on port 80 (/_matrix, /_synapse paths) — port 8008 is Docker-internal only, not bound to host
+- [Phase 03-deploy-and-validate Plan 02]: bootstrap-admin.sh: use grep/cut per-variable extraction instead of source — POSTGRES_INITDB_ARGS has multi-word value that breaks bash source
+- [Phase 03-deploy-and-validate Plan 02]: matrix-nio requires RoomVisibility enum not string — all visibility= args must use RoomVisibility.private/public
+- [Phase 03-deploy-and-validate Plan 02]: nginx extended to /_synapse (not just /_synapse/client) — admin API at /_synapse/admin required for registration token creation
+- [Phase 03-deploy-and-validate Plan 02]: Registration token JWkAZC1bx4BUozEh created (single-use) — for Plan 03-03 second user registration
 
 ### Pending Todos
 
@@ -71,10 +76,10 @@ None.
 - [RESOLVED in Plan 03-01] server_name strategy: resolved — server_name is ec2-23-20-14-90.compute-1.amazonaws.com, baked into DB
 - [RESOLVED in Plan 01] Docker CE AL2023 `$releasever` issue: avoided entirely by using AL2023 built-in `dnf install docker` package instead of Docker CE CentOS repo
 - [Pre-phase] Backup script IMDS hop limit: if backup runs inside a container, `aws ec2 modify-instance-metadata-options --http-put-response-hop-limit 2` is required for IAM credential access; verify which approach `backup.sh` uses
-- [Note for Plan 03-02] bootstrap-admin.sh prints wrong login URL (https://chat.example.com) — ignore it, correct URL is http://ec2-23-20-14-90.compute-1.amazonaws.com
+- [RESOLVED in Plan 03-02] bootstrap-admin.sh prints wrong login URL (https://chat.example.com) — resolved; script fixed to use grep/cut; login URL is http://ec2-23-20-14-90.compute-1.amazonaws.com
 
 ## Session Continuity
 
 Last session: 2026-02-20
-Stopped at: Completed 03-deploy-and-validate 03-01-PLAN.md — Docker Compose stack running on EC2 (postgres+synapse healthy, element+nginx up), STACK-06 satisfied; Plan 03-02 (admin bootstrap + room creation) ready to begin
+Stopped at: Completed 03-deploy-and-validate 03-02-PLAN.md — admin user created, Space+6 rooms created, registration token JWkAZC1bx4BUozEh generated, Element branding confirmed; VERIFY-01, VERIFY-02, VERIFY-04 satisfied; Plan 03-03 (human E2EE verification) ready to begin
 Resume file: None

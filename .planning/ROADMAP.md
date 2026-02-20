@@ -56,7 +56,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   5. Element Web loads with the custom brand name, logo, and theme colors applied
 **Plans**: 3 plans
 - [x] 03-01-PLAN.md — Transfer repo to EC2, substitute placeholders, fill .env, generate signing key, start stack — DONE 2026-02-20
-- [ ] 03-02-PLAN.md — Bootstrap admin user, create default rooms, generate registration token, verify branding
+- [x] 03-02-PLAN.md — Bootstrap admin user, create default rooms, generate registration token, verify branding — DONE 2026-02-20
 - [ ] 03-03-PLAN.md — Human end-to-end verification (login, rooms, E2EE messaging, branding)
 
 ## Progress
@@ -68,4 +68,4 @@ Phases execute in numeric order: 1 → 2 → 3
 |-------|----------------|--------|-----------|
 | 1. AWS Infrastructure | 2/2 | Complete | 2026-02-20 |
 | 2. Stack Configuration | 2/2 | Complete    | 2026-02-20 |
-| 3. Deploy and Validate | 1/3 | In progress | - |
+| 3. Deploy and Validate | 2/3 | In progress | - |

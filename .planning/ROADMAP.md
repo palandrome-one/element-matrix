@@ -54,7 +54,10 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Default Space and rooms are visible in the Element sidebar after admin login
   4. Two separate user accounts can exchange a message in a room and the E2EE lock icon is visible on messages
   5. Element Web loads with the custom brand name, logo, and theme colors applied
-**Plans**: TBD
+**Plans**: 3 plans
+- [ ] 03-01-PLAN.md — Transfer repo to EC2, substitute placeholders, fill .env, generate signing key, start stack
+- [ ] 03-02-PLAN.md — Bootstrap admin user, create default rooms, generate registration token, verify branding
+- [ ] 03-03-PLAN.md — Human end-to-end verification (login, rooms, E2EE messaging, branding)
 
 ## Progress
 
@@ -65,4 +68,4 @@ Phases execute in numeric order: 1 → 2 → 3
 |-------|----------------|--------|-----------|
 | 1. AWS Infrastructure | 2/2 | Complete | 2026-02-20 |
 | 2. Stack Configuration | 2/2 | Complete    | 2026-02-20 |
-| 3. Deploy and Validate | 0/? | Not started | - |
+| 3. Deploy and Validate | 0/3 | Not started | - |

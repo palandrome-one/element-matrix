@@ -59,7 +59,7 @@ services:
       - internal
 
   # ──────────────────────────────────────────────
-  # Nginx (reverse proxy + TLS)
+  # Nginx (reverse proxy — HTTP only for POC)
   # ──────────────────────────────────────────────
   nginx:
     image: nginx:alpine
@@ -69,37 +69,19 @@ services:
       - element
     ports:
       - "80:80"
-      - "443:443"
-      - "8448:8448"
     volumes:
       - ../proxy/nginx.conf:/etc/nginx/nginx.conf:ro
       - ../proxy/conf.d:/etc/nginx/conf.d:ro
       - ../proxy/snippets:/etc/nginx/snippets:ro
       - ../well-known:/var/www/well-known:ro
-      - certbot_conf:/etc/letsencrypt:ro
-      - certbot_webroot:/var/www/certbot:ro
     networks:
       - internal
-      - external
-
-  # ──────────────────────────────────────────────
-  # Certbot (Let's Encrypt)
-  # ──────────────────────────────────────────────
-  certbot:
-    image: certbot/certbot
-    volumes:
-      - certbot_conf:/etc/letsencrypt
-      - certbot_webroot:/var/www/certbot
-    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew --webroot -w /var/www/certbot --quiet; sleep 12h & wait $${!}; done'"
-    networks:
       - external
 
 volumes:
   postgres_data:
   synapse_data:
   synapse_media:
-  certbot_conf:
-  certbot_webroot:
 
 networks:
   internal:

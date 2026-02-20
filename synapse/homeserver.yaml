@@ -8,6 +8,7 @@ server_name: "__EC2_HOSTNAME__"
 public_baseurl: "http://__EC2_HOSTNAME__/"
 pid_file: /data/homeserver.pid
 web_client_location: "http://__EC2_HOSTNAME__/"
+report_stats: false
 
 listeners:
   - port: 8008

@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-20)
 
 **Core value:** Users can access a branded, self-hosted chat platform where registration, messaging, and E2E encryption work end-to-end on AWS
-**Current focus:** Phase 2 — Stack Configuration
+**Current focus:** Phase 3 — Deploy and Validate
 
 ## Current Position
 
-Phase: 2 of 3 (Stack Configuration) — COMPLETE
-Plan: 2 of 2 completed in current phase
-Status: Phase 2 complete — all application configs aligned to __EC2_HOSTNAME__ with HTTP and invite-only registration
-Last activity: 2026-02-20 — Plan 02-02 complete (homeserver.yaml, config.json, well-known files updated for HTTP POC)
+Phase: 3 of 3 (Deploy and Validate) — IN PROGRESS
+Plan: 1 of 3 completed in current phase
+Status: Phase 3 Plan 01 complete — Docker Compose stack running on EC2; all 4 services healthy; STACK-06 satisfied
+Last activity: 2026-02-20 — Plan 03-01 complete (EC2 deploy, signing key generated, stack started with postgres+synapse healthy, element+nginx running)
 
-Progress: [███████░░░] 67% (4 of 6 plans across all phases)
+Progress: [████████░░] 83% (5 of 6 plans across all phases)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 4
-- Average duration: ~3 min
-- Total execution time: ~0.2 hours
+- Total plans completed: 5
+- Average duration: ~4 min
+- Total execution time: ~0.3 hours
 
 **By Phase:**
 
@@ -29,10 +29,11 @@ Progress: [███████░░░] 67% (4 of 6 plans across all phases)
 |-------|-------|-------|----------|
 | 01-aws-infrastructure | 2 | ~9 min | ~5 min |
 | 02-stack-configuration | 2 | ~4 min | ~2 min |
+| 03-deploy-and-validate | 1 (of 3) | ~6 min | ~6 min |
 
 **Recent Trend:**
-- Last 5 plans: 4 min, ~5 min, ~2 min, ~2 min
-- Trend: fast execution on config-only plans
+- Last 5 plans: ~5 min, ~2 min, ~2 min, 6 min
+- Trend: operational plans (EC2 work) take slightly longer than config-only plans
 
 *Updated after each plan completion*
 
@@ -56,19 +57,24 @@ Recent decisions affecting current work:
 - [Phase 02-stack-configuration Plan 02]: email block commented out (not deleted) — preserves template for future SMTP, prevents Synapse crash on placeholder SMTP values
 - [Phase 02-stack-configuration Plan 02]: well-known/matrix/server uses __EC2_HOSTNAME__:80 with explicit port — default Matrix server discovery is 8448 (federation); explicit :80 routes correctly for HTTP POC
 - [Phase 02-stack-configuration Plan 02]: STACK-02, STACK-03, STACK-04, STACK-05 requirements satisfied — all configs aligned to __EC2_HOSTNAME__ with http://, invite-only registration enabled
+- [Phase 03-deploy-and-validate Plan 01]: report_stats: false must be in homeserver.yaml before synapse generate — generate mode exits with error if the key is absent
+- [Phase 03-deploy-and-validate Plan 01]: homeserver.yaml secret substitution done via sed on EC2 (not docker-compose env vars) — homeserver.yaml is a read-only bind mount; Synapse cannot receive secrets via environment variables when SYNAPSE_CONFIG_PATH points to existing file
+- [Phase 03-deploy-and-validate Plan 01]: EC2 hostname = ec2-23-20-14-90.compute-1.amazonaws.com; server_name baked into postgres DB — cannot change without dropping DB
+- [Phase 03-deploy-and-validate Plan 01]: ADMIN_USER=admin, ADMIN_PASSWORD=5489a89c667a4f298c922fde44fd3727 — needed for Plan 03-02 and Plan 03-03
 
 ### Pending Todos
 
-None yet.
+None.
 
 ### Blockers/Concerns
 
-- [Pre-phase] `server_name` strategy: MITIGATED by server_name _ catch-all in Plan 01; still need to decide on stable hostname before Phase 3 smoke test (options: public IP with EIP, short placeholder like `poc.internal`)
+- [RESOLVED in Plan 03-01] server_name strategy: resolved — server_name is ec2-23-20-14-90.compute-1.amazonaws.com, baked into DB
 - [RESOLVED in Plan 01] Docker CE AL2023 `$releasever` issue: avoided entirely by using AL2023 built-in `dnf install docker` package instead of Docker CE CentOS repo
 - [Pre-phase] Backup script IMDS hop limit: if backup runs inside a container, `aws ec2 modify-instance-metadata-options --http-put-response-hop-limit 2` is required for IAM credential access; verify which approach `backup.sh` uses
+- [Note for Plan 03-02] bootstrap-admin.sh prints wrong login URL (https://chat.example.com) — ignore it, correct URL is http://ec2-23-20-14-90.compute-1.amazonaws.com
 
 ## Session Continuity
 
 Last session: 2026-02-20
-Stopped at: Completed 02-stack-configuration 02-02-PLAN.md — Phase 2 complete; all app configs aligned to __EC2_HOSTNAME__ with HTTP (STACK-02 through STACK-05 satisfied); Phase 3 (Deployment) ready to begin
+Stopped at: Completed 03-deploy-and-validate 03-01-PLAN.md — Docker Compose stack running on EC2 (postgres+synapse healthy, element+nginx up), STACK-06 satisfied; Plan 03-02 (admin bootstrap + room creation) ready to begin
 Resume file: None

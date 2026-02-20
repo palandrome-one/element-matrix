@@ -1,8 +1,8 @@
 {
     "default_server_config": {
         "m.homeserver": {
-            "base_url": "https://matrix.example.com",
-            "server_name": "example.com"
+            "base_url": "http://__EC2_HOSTNAME__",
+            "server_name": "__EC2_HOSTNAME__"
         },
         "m.identity_server": {
             "base_url": ""
@@ -48,20 +48,11 @@
             }
         ]
     },
-    "permalink_prefix": "https://chat.example.com",
-    "terms_and_conditions_links": [
-        {
-            "url": "https://example.com/terms",
-            "text": "Terms of Service"
-        },
-        {
-            "url": "https://example.com/privacy",
-            "text": "Privacy Policy"
-        }
-    ],
+    "permalink_prefix": "http://__EC2_HOSTNAME__",
+    "terms_and_conditions_links": [],
     "embedded_pages": {
-        "welcome_url": "https://example.com/welcome",
-        "home_url": "https://example.com/home"
+        "welcome_url": "",
+        "home_url": ""
     },
     "features": {
         "feature_video_rooms": true,

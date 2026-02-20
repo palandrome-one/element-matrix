@@ -9,18 +9,18 @@ See: .planning/PROJECT.md (updated 2026-02-20)
 
 ## Current Position
 
-Phase: 2 of 3 (Stack Configuration) — IN PROGRESS
-Plan: 1 of 4 completed in current phase
-Status: Phase 2 Plan 01 complete — HTTP-only Nginx config and certbot removal done
-Last activity: 2026-02-20 — Plan 02-01 complete (HTTP-only Nginx proxy, certbot stripped from docker-compose)
+Phase: 2 of 3 (Stack Configuration) — COMPLETE
+Plan: 2 of 2 completed in current phase
+Status: Phase 2 complete — all application configs aligned to __EC2_HOSTNAME__ with HTTP and invite-only registration
+Last activity: 2026-02-20 — Plan 02-02 complete (homeserver.yaml, config.json, well-known files updated for HTTP POC)
 
-Progress: [█████░░░░░] 50% (3 of 6 plans across all phases)
+Progress: [███████░░░] 67% (4 of 6 plans across all phases)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 3
-- Average duration: ~4 min
+- Total plans completed: 4
+- Average duration: ~3 min
 - Total execution time: ~0.2 hours
 
 **By Phase:**
@@ -28,10 +28,10 @@ Progress: [█████░░░░░] 50% (3 of 6 plans across all phases)
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01-aws-infrastructure | 2 | ~9 min | ~5 min |
-| 02-stack-configuration | 1 | ~2 min | ~2 min |
+| 02-stack-configuration | 2 | ~4 min | ~2 min |
 
 **Recent Trend:**
-- Last 5 plans: 4 min, ~5 min, ~2 min
+- Last 5 plans: 4 min, ~5 min, ~2 min, ~2 min
 - Trend: fast execution on config-only plans
 
 *Updated after each plan completion*
@@ -53,6 +53,9 @@ Recent decisions affecting current work:
 - [Phase 02-stack-configuration Plan 01]: Use server_name _ catch-all in Nginx — EC2 public hostnames are impermanent without Elastic IP; catch-all ensures Nginx starts regardless of hostname
 - [Phase 02-stack-configuration Plan 01]: Certbot volumes removed entirely (not just commented out) — prevents Docker from creating empty named volumes that would shadow future TLS setup
 - [Phase 02-stack-configuration Plan 01]: STACK-01 requirement satisfied — HTTP-only Nginx proxy with no trailing slash on Synapse proxy_pass
+- [Phase 02-stack-configuration Plan 02]: email block commented out (not deleted) — preserves template for future SMTP, prevents Synapse crash on placeholder SMTP values
+- [Phase 02-stack-configuration Plan 02]: well-known/matrix/server uses __EC2_HOSTNAME__:80 with explicit port — default Matrix server discovery is 8448 (federation); explicit :80 routes correctly for HTTP POC
+- [Phase 02-stack-configuration Plan 02]: STACK-02, STACK-03, STACK-04, STACK-05 requirements satisfied — all configs aligned to __EC2_HOSTNAME__ with http://, invite-only registration enabled
 
 ### Pending Todos
 
@@ -67,5 +70,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-20
-Stopped at: Completed 02-stack-configuration 02-01-PLAN.md — HTTP-only Nginx proxy config and certbot removal complete (STACK-01 satisfied); Phase 2 Plan 02 ready to begin
+Stopped at: Completed 02-stack-configuration 02-02-PLAN.md — Phase 2 complete; all app configs aligned to __EC2_HOSTNAME__ with HTTP (STACK-02 through STACK-05 satisfied); Phase 3 (Deployment) ready to begin
 Resume file: None

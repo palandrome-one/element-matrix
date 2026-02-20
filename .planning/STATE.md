@@ -5,22 +5,22 @@
 See: .planning/PROJECT.md (updated 2026-02-20)
 
 **Core value:** Users can access a branded, self-hosted chat platform where registration, messaging, and E2E encryption work end-to-end on AWS
-**Current focus:** Phase 1 — AWS Infrastructure
+**Current focus:** Phase 2 — Stack Configuration
 
 ## Current Position
 
-Phase: 1 of 3 (AWS Infrastructure) — COMPLETE
-Plan: 2 of 2 completed in current phase
-Status: Phase 1 complete — ready to begin Phase 2 (Stack Configuration)
-Last activity: 2026-02-20 — Plan 02 complete (all Phase 1 success criteria verified)
+Phase: 2 of 3 (Stack Configuration) — IN PROGRESS
+Plan: 1 of 4 completed in current phase
+Status: Phase 2 Plan 01 complete — HTTP-only Nginx config and certbot removal done
+Last activity: 2026-02-20 — Plan 02-01 complete (HTTP-only Nginx proxy, certbot stripped from docker-compose)
 
-Progress: [████░░░░░░] 33% (2 of 6 plans across all phases)
+Progress: [█████░░░░░] 50% (3 of 6 plans across all phases)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 2
-- Average duration: ~5 min
+- Total plans completed: 3
+- Average duration: ~4 min
 - Total execution time: ~0.2 hours
 
 **By Phase:**
@@ -28,10 +28,11 @@ Progress: [████░░░░░░] 33% (2 of 6 plans across all phases)
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01-aws-infrastructure | 2 | ~9 min | ~5 min |
+| 02-stack-configuration | 1 | ~2 min | ~2 min |
 
 **Recent Trend:**
-- Last 5 plans: 4 min, ~5 min
-- Trend: baseline established
+- Last 5 plans: 4 min, ~5 min, ~2 min
+- Trend: fast execution on config-only plans
 
 *Updated after each plan completion*
 
@@ -49,6 +50,9 @@ Recent decisions affecting current work:
 - [Phase 01-aws-infrastructure]: instance-info.env added to .gitignore — contains admin IP and instance IDs, must not be committed
 - [Phase 01-aws-infrastructure]: Resolve AL2023 AMI via SSM parameter store (resolve:ssm:) to avoid hardcoded AMI IDs that expire
 - [Phase 01-aws-infrastructure Plan 02]: Phase 1 verification complete — Docker Engine v25.0.14, Compose v5.0.2 (v2), 30 GB gp3, port 80 public, port 8008 blocked; NVMe naming (/dev/nvme0n1p1) is correct for Nitro instances
+- [Phase 02-stack-configuration Plan 01]: Use server_name _ catch-all in Nginx — EC2 public hostnames are impermanent without Elastic IP; catch-all ensures Nginx starts regardless of hostname
+- [Phase 02-stack-configuration Plan 01]: Certbot volumes removed entirely (not just commented out) — prevents Docker from creating empty named volumes that would shadow future TLS setup
+- [Phase 02-stack-configuration Plan 01]: STACK-01 requirement satisfied — HTTP-only Nginx proxy with no trailing slash on Synapse proxy_pass
 
 ### Pending Todos
 
@@ -56,12 +60,12 @@ None yet.
 
 ### Blockers/Concerns
 
-- [Pre-phase] `server_name` strategy unresolved: must decide on a stable logical name before Phase 3 begins (EC2 public hostname is impermanent without Elastic IP; options: public IP with EIP, short placeholder like `poc.internal`)
+- [Pre-phase] `server_name` strategy: MITIGATED by server_name _ catch-all in Plan 01; still need to decide on stable hostname before Phase 3 smoke test (options: public IP with EIP, short placeholder like `poc.internal`)
 - [RESOLVED in Plan 01] Docker CE AL2023 `$releasever` issue: avoided entirely by using AL2023 built-in `dnf install docker` package instead of Docker CE CentOS repo
 - [Pre-phase] Backup script IMDS hop limit: if backup runs inside a container, `aws ec2 modify-instance-metadata-options --http-put-response-hop-limit 2` is required for IAM credential access; verify which approach `backup.sh` uses
 
 ## Session Continuity
 
 Last session: 2026-02-20
-Stopped at: Completed 01-aws-infrastructure 01-02-PLAN.md — Phase 1 complete; all success criteria verified (SSH, Docker Compose v2, 30 GB disk, SG rules confirmed); Phase 2 (Stack Configuration) ready to begin
+Stopped at: Completed 02-stack-configuration 02-01-PLAN.md — HTTP-only Nginx proxy config and certbot removal complete (STACK-01 satisfied); Phase 2 Plan 02 ready to begin
 Resume file: None

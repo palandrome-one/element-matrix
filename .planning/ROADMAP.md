@@ -41,7 +41,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Element `config.json` has `base_url` set to the same `http://<EC2-hostname>` value
   4. All config changes are committed to the repo and ready to transfer to EC2 via SCP
 **Plans**: 2 plans
-- [ ] 02-01-PLAN.md — Replace Nginx and Docker Compose with HTTP-only config, remove certbot
+- [x] 02-01-PLAN.md — Replace Nginx and Docker Compose with HTTP-only config, remove certbot — DONE 2026-02-20
 - [ ] 02-02-PLAN.md — Update Synapse, Element, and well-known configs for EC2 HTTP hostname
 
 ### Phase 3: Deploy and Validate
@@ -64,5 +64,5 @@ Phases execute in numeric order: 1 → 2 → 3
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. AWS Infrastructure | 2/2 | Complete | 2026-02-20 |
-| 2. Stack Configuration | 0/2 | Not started | - |
+| 2. Stack Configuration | 1/2 | In progress | - |
 | 3. Deploy and Validate | 0/? | Not started | - |

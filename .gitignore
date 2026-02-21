@@ -3,6 +3,9 @@ compose/.env
 *.pem
 *.key
 
+# Client-facing documents
+docs/quotation.md
+
 # AWS provisioning artifacts (contain instance IDs, admin IP, key paths)
 scripts/aws/instance-info.env
 
